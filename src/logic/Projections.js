@@ -31,4 +31,12 @@ Projections.isShowingTodoList = function(state) {
   return Boolean(state.get('todos').size);
 };
 
+Projections.isToggleAllChecked = function(state) {
+  return this.activeTodoCount(state) === 0;
+};
+
+Projections.isShowingClearCompleted = function(state) {
+  return this.completedTodoCount(state) > 0;
+};
+
 module.exports = Projections;

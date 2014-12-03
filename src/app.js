@@ -44,7 +44,6 @@ Object.keys(Actions).forEach(function(fnName) {
     args.unshift(app._state);
     app._state = Actions[fnName].apply(Actions, args);
     app.emitChange();
-    return app._state;
   };
 });
 
