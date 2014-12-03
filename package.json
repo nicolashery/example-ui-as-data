@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "dependencies": {
     "immutable": "3.3.0",
+    "object-assign": "2.0.0",
     "react": "0.12.1"
   },
   "devDependencies": {
