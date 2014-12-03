@@ -1,8 +1,8 @@
 var Immutable = require('immutable');
 
-var state = {};
+var State = {};
 
-state.initial = function() {
+State.initial = function() {
   return Immutable.fromJS({
     todos: [],
     nowShowing: 'all',
@@ -10,4 +10,4 @@ state.initial = function() {
   });
 };
 
-module.exports = state;
+module.exports = State;

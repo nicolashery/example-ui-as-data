@@ -1,8 +1,8 @@
 var Immutable = require('immutable');
 
-var actions = {};
+var Actions = {};
 
-actions.addTodo = function(state, title) {
+Actions.addTodo = function(state, title) {
   var todo = Immutable.Map({
     id: this._nextTodoId(state),
     title: title,
@@ -13,7 +13,7 @@ actions.addTodo = function(state, title) {
   });
 };
 
-actions._nextTodoId = function(state) {
+Actions._nextTodoId = function(state) {
   var lastTodo = this._lastTodo(state);
   if (!lastTodo) {
     return 1;
@@ -23,11 +23,11 @@ actions._nextTodoId = function(state) {
   }
 };
 
-actions._lastTodo = function(state) {
+Actions._lastTodo = function(state) {
   return state.get('todos', Immutable.List()).last();
 };
 
-actions.toggleAll = function(state, checked) {
+Actions.toggleAll = function(state, checked) {
   return state.update('todos', function(todos) {
     return todos.map(function(todo) {
       return todo.set('completed', checked);
@@ -35,7 +35,7 @@ actions.toggleAll = function(state, checked) {
   });
 };
 
-actions.toggle = function(state, id) {
+Actions.toggle = function(state, id) {
   return this._updateTodo(state, id, function(todo) {
     return todo.update('completed', function(checked) {
       return !checked;
@@ -43,7 +43,7 @@ actions.toggle = function(state, id) {
   });
 };
 
-actions._updateTodo = function(state, id, updateFn) {
+Actions._updateTodo = function(state, id, updateFn) {
   return state.update('todos', function(todos) {
     return todos.map(function(todo) {
       if (todo.get('id') === id) {
@@ -56,7 +56,7 @@ actions._updateTodo = function(state, id, updateFn) {
   });
 };
 
-actions.destroy = function(state, id) {
+Actions.destroy = function(state, id) {
   return state.update('todos', function(todos) {
     return todos.filter(function(todo) {
       return todo.get('id') !== id;
@@ -64,14 +64,14 @@ actions.destroy = function(state, id) {
   });
 };
 
-actions.save = function(state, id, text) {
+Actions.save = function(state, id, text) {
   state = this.closeEdit(state);
   return this._updateTodo(state, id, function(todo) {
     return todo.set('title', text);
   });
 };
 
-actions.clearCompleted = function(state) {
+Actions.clearCompleted = function(state) {
   return state.update('todos', function(todos) {
     return todos.filter(function(todo) {
       return !todo.get('completed');
@@ -79,16 +79,16 @@ actions.clearCompleted = function(state) {
   });
 };
 
-actions.show = function(state, showing) {
+Actions.show = function(state, showing) {
   return state.set('nowShowing', showing);
 };
 
-actions.openEdit = function(state, id) {
+Actions.openEdit = function(state, id) {
   return state.set('editing', id);
 };
 
-actions.closeEdit = function(state) {
+Actions.closeEdit = function(state) {
   return state.set('editing', null);
 };
 
-module.exports = actions;
+module.exports = Actions;

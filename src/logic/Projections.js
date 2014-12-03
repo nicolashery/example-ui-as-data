@@ -1,6 +1,6 @@
-var projections = {};
+var Projections = {};
 
-projections.shownTodos = function(state) {
+Projections.shownTodos = function(state) {
   return state.get('todos').filter(function(todo) {
     switch (state.get('nowShowing')) {
     case 'active':
@@ -13,22 +13,22 @@ projections.shownTodos = function(state) {
   });
 };
 
-projections.activeTodoCount = function(state) {
+Projections.activeTodoCount = function(state) {
   return state.get('todos').reduce(function(accum, todo) {
     return todo.get('completed') ? accum : accum + 1;
   }, 0);
 };
 
-projections.completedTodoCount = function(state) {
+Projections.completedTodoCount = function(state) {
   return state.get('todos').size - this.activeTodoCount(state);
 };
 
-projections.isShowingFooter = function(state) {
+Projections.isShowingFooter = function(state) {
   return Boolean(this.activeTodoCount(state) || this.completedTodoCount(state));
 };
 
-projections.isShowingTodoList = function(state) {
+Projections.isShowingTodoList = function(state) {
   return Boolean(state.get('todos').size);
 };
 
-module.exports = projections;
+module.exports = Projections;
