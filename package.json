@@ -1,0 +1,29 @@
+{
+  "name": "example-ui-as-data",
+  "version": "0.1.0",
+  "dependencies": {
+    "immutable": "3.3.0",
+    "react": "0.12.1"
+  },
+  "devDependencies": {
+    "css-loader": "0.9.0",
+    "gulp": "3.8.10",
+    "gulp-jshint": "1.9.0",
+    "gulp-react": "2.0.0",
+    "jshint-stylish": "1.0.0",
+    "jsx-loader": "0.12.2",
+    "style-loader": "0.8.2",
+    "webpack": "1.4.13",
+    "webpack-dev-server": "1.6.6"
+  },
+  "engines": {
+    "node": "0.10.x"
+  },
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --devtool eval-source-map --cache --colors --progress",
+    "jshint": "gulp jshint",
+    "jshint-watch": "gulp jshint-watch"
+  }
+}
