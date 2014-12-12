@@ -1,6 +1,7 @@
 var React = require('react');
 
 var ReactApp = require('./react/App.jsx');
+var D3App = require('./d3/App.jsx');
 
 var Main = React.createClass({
   getInitialState: function() {
@@ -45,6 +46,10 @@ var Main = React.createClass({
 
     if (engine === 'react') {
       return <ReactApp/>;
+    }
+
+    if (engine === 'd3') {
+      return <D3App/>;
     }
 
     return <p>Engine not implemented.</p>;
