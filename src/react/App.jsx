@@ -7,11 +7,15 @@ var ENTER_KEY = 13;
 
 var App = React.createClass({
   componentDidMount: function() {
-    app.addChangeListener(this.forceUpdate.bind(this));
+    app.addChangeListener(this.handleChange);
   },
 
   componentWillUnmount: function() {
-    app.removeChangeListener(this.forceUpdate.bind(this));
+    app.removeChangeListener(this.handleChange);
+  },
+
+  handleChange: function() {
+    this.forceUpdate();
   },
 
   handleNewTodoKeyDown: function (e) {
