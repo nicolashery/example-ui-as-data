@@ -1,6 +1,7 @@
 var d3 = window.d3;
 var app = require('../app');
 
+var ESCAPE_KEY = 27;
 var ENTER_KEY = 13;
 
 var el;
@@ -92,22 +93,58 @@ function renderTodos() {
 
   var enter = todo.enter().append('p')
     .attr('class', 'todo');
-  enter.append('input')
+  var view = enter.append('div').attr('class', 'todoView');
+  view.append('input')
     .attr('class', 'todoCompleted')
     .attr('type', 'checkbox')
     .on('change', function(d) { app.actions.toggle(d.id); });
-  enter.append('span').text(' ');
-  enter.append('span').attr('class', 'todoTitle');
-  enter.append('span').text(' ');
-  enter.append('button')
+  view.append('span').text(' ');
+  view.append('span')
+    .attr('class', 'todoTitle')
+    .on('dblclick', function(d) { app.actions.openEdit(d.id); });
+  view.append('span').text(' ');
+  view.append('button')
     .text('Delete')
     .on('click', function(d) { app.actions.destroy(d.id); });
+  var edit = enter.append('div').attr('class', 'todoEdit');
+  edit.append('input')
+    .attr('class', 'todoInput')
+    .on('keydown', function(d) {
+      var e = d3.event;
+      if (e.which === ESCAPE_KEY) {
+        this.value = d.title;
+        app.actions.closeEdit();
+      } else if (e.which === ENTER_KEY) {
+        handleEditTodo.call(this, d);
+      }
+    })
+    .on('blur', handleEditTodo);
 
+  todo.select('.todoView')
+    .style('display', function(d) {
+      return app.state().get('editing') !== d.id ? 'block' : 'none';
+    });
+  todo.select('.todoEdit')
+    .style('display', function(d) {
+      return app.state().get('editing') === d.id ? 'block' : 'none';
+    });
   todo.select('.todoTitle').text(function(d) { return d.title; });
   todo.select('.todoCompleted')
     .property('checked', function(d) { return d.completed; });
+  todo.select('.todoInput')
+    .property('value', function(d) { return d.title; });
 
   todo.exit().remove();
+}
+
+function handleEditTodo(d) {
+  var val = this.value.trim();
+  if (val) {
+    app.actions.save(d.id, val);
+    this.value = val;
+  } else {
+    app.actions.destroy(d.id);
+  }
 }
 
 function renderFooter() {
