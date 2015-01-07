@@ -6,7 +6,7 @@ var D3App = require('./d3/App.jsx');
 var Main = React.createClass({
   getInitialState: function() {
     return {
-      renderingEngine: 'd3'
+      renderingEngine: 'react'
     };
   },
 
@@ -23,11 +23,17 @@ var Main = React.createClass({
     return (
       <p>
         <strong>Rendering engine: </strong>
-        <a href="" onClick={this.handleSwitchRenderingEngine.bind(null, 'react')}>
+        <a
+          className={this.state.renderingEngine === 'react' ? 'isActive' : null}
+          href=""
+          onClick={this.handleSwitchRenderingEngine.bind(null, 'react')}>
           React
         </a>
         {' - '}
-        <a href="" onClick={this.handleSwitchRenderingEngine.bind(null, 'd3')}>
+        <a
+          className={this.state.renderingEngine === 'd3' ? 'isActive' : null}
+          href=""
+          onClick={this.handleSwitchRenderingEngine.bind(null, 'd3')}>
           D3.js
         </a>
       </p>

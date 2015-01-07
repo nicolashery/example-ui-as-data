@@ -52,8 +52,7 @@ var App = React.createClass({
         <strong>New todo: </strong>
         <input
           ref="newField"
-          onKeyDown={this.handleNewTodoKeyDown}
-          autoFocus={true} />
+          onKeyDown={this.handleNewTodoKeyDown} />
       </p>
     );
   },
