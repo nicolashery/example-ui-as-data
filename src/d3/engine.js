@@ -20,16 +20,17 @@ function render() {
   }
 
   renderNewTodo();
+  renderToggleAll();
   renderTodos();
 }
 
 function renderNewTodo() {
   var container = d3.select(el).selectAll('.newTodo')
-  .data([0]);
+    .data([0]);
 
-  container.enter().append('p').attr('class', 'newTodo');
-  container.enter().append('strong').text('New todo: ');
-  container.enter().append('input')
+  var enter = container.enter().append('p').attr('class', 'newTodo');
+  enter.append('strong').text('New todo: ');
+  enter.append('input')
     .on('keydown', handleNewTodoKeyDown);
 }
 
@@ -47,10 +48,37 @@ function handleNewTodoKeyDown() {
   }
 }
 
+function renderToggleAll() {
+  var container = d3.select(el).selectAll('.toggleAll')
+    .data([0]);
+
+  var enter = container.enter().append('p').attr('class', 'toggleAll');
+  enter.append('input')
+    .attr('class', 'allCompleted')
+    .attr('type', 'checkbox')
+    .on('change', function() {
+      var checked = app.projections.isToggleAllChecked();
+      app.actions.toggleAll(!checked);
+    });
+  enter.append('span').text(' Toggle all');
+
+  container.style('display', function() {
+    return app.projections.isShowingTodoList() ? 'block' : 'none';
+  });
+  container.select('.allCompleted')
+    .property('checked', function() {
+      return app.projections.isToggleAllChecked();
+    });
+}
+
 function renderTodos() {
   var container = d3.select(el).selectAll('.todos')
     .data([0]);
   container.enter().append('div').attr('class', 'todos');
+
+  container.style('display', function() {
+    return app.projections.isShowingTodoList() ? 'block' : 'none';
+  });
 
   var data;
   if (!app.projections.isShowingTodoList()) {
@@ -63,16 +91,16 @@ function renderTodos() {
   var todo = container.selectAll('.todo')
     .data(data, function(d) { return d.id; });
 
-  var newTodo = todo.enter().append('p')
+  var enter = todo.enter().append('p')
     .attr('class', 'todo');
-  newTodo.append('input')
+  enter.append('input')
     .attr('class', 'todoCompleted')
     .attr('type', 'checkbox')
     .on('change', function(d) { app.actions.toggle(d.id); });
-  newTodo.append('span').text(' ');
-  newTodo.append('span').attr('class', 'todoTitle');
-  newTodo.append('span').text(' ');
-  newTodo.append('button')
+  enter.append('span').text(' ');
+  enter.append('span').attr('class', 'todoTitle');
+  enter.append('span').text(' ');
+  enter.append('button')
     .text('Delete')
     .on('click', function(d) { app.actions.destroy(d.id); });
 
