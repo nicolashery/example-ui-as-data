@@ -50,7 +50,6 @@ var App = React.createClass({
     return (
       <p>
         <strong>New todo: </strong>
-        {' '}
         <input
           ref="newField"
           onKeyDown={this.handleNewTodoKeyDown}

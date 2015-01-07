@@ -6,7 +6,7 @@ var D3App = require('./d3/App.jsx');
 var Main = React.createClass({
   getInitialState: function() {
     return {
-      renderingEngine: 'react'
+      renderingEngine: 'd3'
     };
   },
 
