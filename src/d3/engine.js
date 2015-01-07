@@ -71,6 +71,10 @@ function renderTodos() {
     .on('change', function(d) { app.actions.toggle(d.id); });
   newTodo.append('span').text(' ');
   newTodo.append('span').attr('class', 'todoTitle');
+  newTodo.append('span').text(' ');
+  newTodo.append('button')
+    .text('Delete')
+    .on('click', function(d) { app.actions.destroy(d.id); });
 
   todo.select('.todoTitle').text(function(d) { return d.title; });
   todo.select('.todoCompleted')
