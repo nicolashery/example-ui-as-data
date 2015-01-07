@@ -39,15 +39,16 @@ var Footer = React.createClass({
   },
 
   renderFilter: function(name, label) {
+    var classes;
     if (this.props.nowShowing === name) {
-      return <span>{label}</span>;
+      classes = 'isActive';
     }
     var self = this;
     var handleClick = function(e) {
       e.preventDefault();
       self.props.onShow(name);
     };
-    return <a href="" onClick={handleClick}>{label}</a>;
+    return <a className={classes} href="" onClick={handleClick}>{label}</a>;
   },
 
   renderClear: function() {

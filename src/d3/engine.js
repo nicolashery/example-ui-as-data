@@ -22,6 +22,7 @@ function render() {
   renderNewTodo();
   renderToggleAll();
   renderTodos();
+  renderFooter();
 }
 
 function renderNewTodo() {
@@ -66,9 +67,7 @@ function renderToggleAll() {
     return app.projections.isShowingTodoList() ? 'block' : 'none';
   });
   container.select('.allCompleted')
-    .property('checked', function() {
-      return app.projections.isToggleAllChecked();
-    });
+    .property('checked', app.projections.isToggleAllChecked());
 }
 
 function renderTodos() {
@@ -109,6 +108,70 @@ function renderTodos() {
     .property('checked', function(d) { return d.completed; });
 
   todo.exit().remove();
+}
+
+function renderFooter() {
+  var container = d3.select(el).selectAll('.footer')
+    .data([0]);
+
+  var enter = container.enter().append('p').attr('class', 'footer');
+  enter.append('strong').attr('class', 'count');
+  enter.append('span').text(' item(s) left');
+  enter.append('br');
+  enter.append('a')
+    .attr('class', 'filterAll')
+    .attr('href', '')
+    .text('All')
+    .on('click', function() {
+      d3.event.preventDefault();
+      app.actions.show('all');
+    });
+  enter.append('span').text(' ');
+  enter.append('a')
+    .attr('class', 'filterActive')
+    .attr('href', '')
+    .text('Active')
+    .on('click', function() {
+      d3.event.preventDefault();
+      app.actions.show('active');
+    });
+  enter.append('span').text(' ');
+  enter.append('a')
+    .attr('class', 'filterCompleted')
+    .attr('href', '')
+    .text('Completed')
+    .on('click', function() {
+      d3.event.preventDefault();
+      app.actions.show('completed');
+    });
+  enter.append('span').text(' ');
+  enter.append('br');
+  enter.append('a')
+    .attr('class', 'clearCompleted')
+    .attr('href', '')
+    .on('click', function() {
+      d3.event.preventDefault();
+      app.actions.clearCompleted();
+    });
+
+  container.style('display', function() {
+    return app.projections.isShowingFooter() ? 'block' : 'none';
+  });
+  container.select('.count').text(app.projections.activeTodoCount());
+  container.select('.filterAll').classed('isActive', function() {
+    return app.state().get('nowShowing') === 'all';
+  });
+  container.select('.filterActive').classed('isActive', function() {
+    return app.state().get('nowShowing') === 'active';
+  });
+  container.select('.filterCompleted').classed('isActive', function() {
+    return app.state().get('nowShowing') === 'completed';
+  });
+  container.select('.clearCompleted')
+    .style('display', function() {
+      return app.projections.isShowingClearCompleted() ? 'block' : 'none';
+    })
+    .text('Clear completed (' + app.projections.completedTodoCount() + ')');
 }
 
 module.exports = {
