@@ -39,7 +39,7 @@ function handleNewTodoKeyDown() {
     return;
   }
   e.preventDefault();
-  
+
   var val = this.value.trim();
   if (val) {
     app.actions.addTodo(val);
@@ -63,10 +63,18 @@ function renderTodos() {
   var todo = container.selectAll('.todo')
     .data(data, function(d) { return d.id; });
 
-  todo.enter().append('p')
+  var newTodo = todo.enter().append('p')
     .attr('class', 'todo');
+  newTodo.append('input')
+    .attr('class', 'todoCompleted')
+    .attr('type', 'checkbox')
+    .on('change', function(d) { app.actions.toggle(d.id); });
+  newTodo.append('span').text(' ');
+  newTodo.append('span').attr('class', 'todoTitle');
 
-  todo.text(function(d) { return d.title; });
+  todo.select('.todoTitle').text(function(d) { return d.title; });
+  todo.select('.todoCompleted')
+    .property('checked', function(d) { return d.completed; });
 
   todo.exit().remove();
 }
