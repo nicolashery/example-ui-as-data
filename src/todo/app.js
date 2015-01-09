@@ -7,6 +7,7 @@ var Projections = require('./logic/Projections');
 var CHANGE_EVENT = 'change';
 
 var app = {};
+window.todoApp = app;
 
 app._State = State;
 app._Actions = Actions;

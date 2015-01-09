@@ -1,12 +1,21 @@
 var React = require('react');
 
-var ReactApp = require('./react/App.jsx');
-var D3App = require('./d3/App.jsx');
+var apps = {
+  game: {
+    react: null,
+    d3: null
+  },
+  todo: {
+    react: require('./todo/react/App.jsx'),
+    d3: require('./todo/d3/App.jsx')
+  }
+};
 
 var Main = React.createClass({
   getInitialState: function() {
     return {
-      renderingEngine: 'react'
+      app: 'game',
+      engine: 'react'
     };
   },
 
@@ -21,44 +30,68 @@ var Main = React.createClass({
 
   renderMenu: function() {
     return (
-      <p>
-        <strong>Rendering engine: </strong>
-        <a
-          className={this.state.renderingEngine === 'react' ? 'isActive' : null}
-          href=""
-          onClick={this.handleSwitchRenderingEngine.bind(null, 'react')}>
-          React
-        </a>
-        {' - '}
-        <a
-          className={this.state.renderingEngine === 'd3' ? 'isActive' : null}
-          href=""
-          onClick={this.handleSwitchRenderingEngine.bind(null, 'd3')}>
-          D3.js
-        </a>
-      </p>
+      <div>
+        <p>
+          <strong>App: </strong>
+          <a
+            className={this.state.app === 'game' ? 'isActive' : null}
+            href=""
+            onClick={this.handleSwitchApp.bind(null, 'game')}>
+            Game
+          </a>
+          {' - '}
+          <a
+            className={this.state.app === 'todo' ? 'isActive' : null}
+            href=""
+            onClick={this.handleSwitchApp.bind(null, 'todo')}>
+            Todo
+          </a>
+        </p>
+        <p>
+          <strong>Rendering engine: </strong>
+          <a
+            className={this.state.engine === 'react' ? 'isActive' : null}
+            href=""
+            onClick={this.handleSwitchEngine.bind(null, 'react')}>
+            React
+          </a>
+          {' - '}
+          <a
+            className={this.state.engine === 'd3' ? 'isActive' : null}
+            href=""
+            onClick={this.handleSwitchEngine.bind(null, 'd3')}>
+            D3.js
+          </a>
+        </p>
+      </div>
     );
   },
 
-  handleSwitchRenderingEngine: function(name, e) {
+  handleSwitchApp: function(name, e) {
     if (e) {
       e.preventDefault();
     }
-    this.setState({renderingEngine: name});
+    this.setState({app: name});
+  },
+
+  handleSwitchEngine: function(name, e) {
+    if (e) {
+      e.preventDefault();
+    }
+    this.setState({engine: name});
   },
 
   renderApp: function() {
-    var engine = this.state.renderingEngine;
+    var app = this.state.app;
+    var engine = this.state.engine;
 
-    if (engine === 'react') {
-      return <ReactApp/>;
+    var AppComponent = apps[app] && apps[app][engine];
+
+    if (!AppComponent) {
+      return <p>App or engine not implemented.</p>;
     }
 
-    if (engine === 'd3') {
-      return <D3App/>;
-    }
-
-    return <p>Engine not implemented.</p>;
+    return <AppComponent />;
   }
 });
 
