@@ -1,5 +1,6 @@
 var React = require('react');
 var app = require('../app');
+var Resources = require('./Resources.jsx');
 var UnitList = require('./UnitList.jsx');
 
 var App = React.createClass({
@@ -18,6 +19,7 @@ var App = React.createClass({
   render: function() {
     return (
       <div>
+        <Resources />
         <UnitList />
       </div>
     );
