@@ -1,4 +1,5 @@
 var Immutable = require('immutable');
+var pipeline = require('../../lib/pipeline');
 
 var Projections = {};
 
@@ -22,28 +23,63 @@ Projections._supplySpent = function(state) {
 };
 
 Projections.unitList = function(state) {
-  var units = state.get('units')
+  return pipeline(
+    this._unitListFromMap.bind(this, state),
+    this._unitListSorted.bind(this, state),
+    this._unitListFlagged.bind(this, state)
+  )();
+};
+
+Projections._unitListFromMap = function(state) {
+  return state.get('units')
     .map(function(unit, key) {
       return unit.set('id', key);
     })
     .toList();
+};
 
+Projections._unitListSorted = function(state, units) {
   var sort = state.get('sort');
-  units = units.sortBy(function(unit) {
+  return units.sortBy(function(unit) {
     return unit.get(sort);
   });
+};
 
+Projections._unitListFlagged = function(state, units) {
   var resourcesRemaining = this.resourcesRemaining(state);
   var goldRemaining = resourcesRemaining.get('gold');
   var supplyRemaining = resourcesRemaining.get('supply');
-  units = units.map(function(unit) {
+  return units.map(function(unit) {
     return unit.merge({
       isSelectable: goldRemaining >= unit.get('cost') && supplyRemaining >= 1,
       isRemovable: unit.get('count') > 0
     });
   });
+};
 
-  return units;
+Projections.armySummary = function(state) {
+  return pipeline(
+    this._unitListFromMap.bind(this, state),
+    this._unitListSorted.bind(this, state),
+    this._unitListSelected,
+    this._unitListSummary
+  )();
+};
+
+Projections._unitListSelected = function(units) {
+  return units.filter(function(unit) {
+    return unit.get('count') > 0;
+  });
+};
+
+Projections._unitListSummary = function(units) {
+  return units.map(function(unit) {
+    return Immutable.Map({
+      id: unit.get('id'),
+      name: unit.get('name'),
+      count: unit.get('count')
+    });
+  });
 };
 
 Projections.armyBalance = function(state) {
@@ -69,7 +105,7 @@ Projections._totalAttack = function(state, type) {
     }, 0);
 };
 
-Projections.isShowingSummary = function(state) {
+Projections.isShowingArmy = function(state) {
   return this._totalCount(state) > 0;
 };
 
