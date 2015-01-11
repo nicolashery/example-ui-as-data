@@ -83,11 +83,11 @@ Projections._unitListSummary = function(units) {
 };
 
 Projections.armyBalance = function(state) {
+  var base = this._totalAttack(state);
   return Immutable.Map({
-    base: this._totalAttack(state),
-    light: this._totalAttack(state, 'light'),
-    ranged: this._totalAttack(state, 'ranged'),
-    cavalry: this._totalAttack(state, 'cavalry')
+    light: this._attackBalance(base, this._totalAttack(state, 'light')),
+    ranged: this._attackBalance(base, this._totalAttack(state, 'ranged')),
+    cavalry: this._attackBalance(base, this._totalAttack(state, 'cavalry'))
   });
 };
 
@@ -103,6 +103,10 @@ Projections._totalAttack = function(state, type) {
     .reduce(function(result, value) {
       return result + value;
     }, 0);
+};
+
+Projections._attackBalance = function(base, attack) {
+  return Math.round(attack/base*100)/100;
 };
 
 Projections.isShowingArmy = function(state) {

@@ -2,6 +2,7 @@ var React = require('react');
 var app = require('../app');
 var Resources = require('./Resources.jsx');
 var ArmySummary = require('./ArmySummary.jsx');
+var ArmyBalance = require('./ArmyBalance.jsx');
 var UnitList = require('./UnitList.jsx');
 
 var App = React.createClass({
@@ -35,6 +36,7 @@ var App = React.createClass({
     return (
       <div>
         <ArmySummary />
+        <ArmyBalance />
       </div>
     );
   }
