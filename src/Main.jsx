@@ -2,7 +2,7 @@ var React = require('react');
 
 var apps = {
   game: {
-    react: null,
+    react: require('./game/react/App.jsx'),
     d3: null
   },
   todo: {

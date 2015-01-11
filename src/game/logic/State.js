@@ -5,7 +5,7 @@ var State = {};
 State.initial = function() {
   return Immutable.fromJS({
     resources: {gold: 1500, supply: 10},
-    sort: 'name',
+    sort: 'cost',
     units: {
       footman: {
         name: 'Footman',
@@ -26,7 +26,7 @@ State.initial = function() {
       },
       pikeman: {
         name: 'Pikeman',
-        description: 'Spear-wielding infantry, strong vs cavalry',
+        description: 'Spear-wielding light infantry, strong vs cavalry',
         cost: 150,
         attack: 5,
         hp: 60,
@@ -35,7 +35,7 @@ State.initial = function() {
       },
       knight: {
         name: 'Knight',
-        description: 'Heavy-armored mounted unit, strong vs ranged',
+        description: 'Heavy-armored cavalry unit, strong vs ranged',
         cost: 260,
         attack: 12,
         hp: 160,
