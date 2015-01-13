@@ -3,11 +3,13 @@ var React = require('react');
 var apps = {
   game: {
     react: require('./game/react/App.jsx'),
-    d3: null
+    d3: null,
+    html: require('./game/html/App.jsx')
   },
   todo: {
     react: require('./todo/react/App.jsx'),
-    d3: require('./todo/d3/App.jsx')
+    d3: require('./todo/d3/App.jsx'),
+    html: require('./todo/react/App.jsx')
   }
 };
 
@@ -61,6 +63,13 @@ var Main = React.createClass({
             href=""
             onClick={this.handleSwitchEngine.bind(null, 'd3')}>
             D3.js
+          </a>
+          {' - '}
+          <a
+            className={this.state.engine === 'html' ? 'isActive' : null}
+            href=""
+            onClick={this.handleSwitchEngine.bind(null, 'html')}>
+            React (HTML)
           </a>
         </p>
       </div>

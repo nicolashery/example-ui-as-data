@@ -20,10 +20,20 @@ var App = React.createClass({
 
   render: function() {
     return (
-      <div>
-        <Resources />
-        {this.renderArmy()}
-        <UnitList />
+      <div className="Game">
+        <div className="Game-panel Game-panel--left">
+          <div className="Game-box Game-box--unitList">
+            <div className="Game-boxTitle">Select units</div>
+            <div className="Game-boxContent"><UnitList /></div>
+          </div>
+        </div>
+        <div className="Game-panel Game-panel--right">
+          <div className="Game-box Game-box--resources">
+            <div className="Game-boxTitle">Resources</div>
+            <div className="Game-boxContent"><Resources /></div>
+          </div>
+          {this.renderArmy()}
+        </div>
       </div>
     );
   },
@@ -35,8 +45,14 @@ var App = React.createClass({
 
     return (
       <div>
-        <ArmySummary />
-        <ArmyBalance />
+        <div className="Game-box Game-box--armySummary">
+          <div className="Game-boxTitle">Army summary</div>
+          <div className="Game-boxContent"><ArmySummary /></div>
+        </div>
+        <div className="Game-box Game-box--armyBalance">
+          <div className="Game-boxTitle">Army balance</div>
+          <div className="Game-boxContent"><ArmyBalance /></div>
+        </div>
       </div>
     );
   }

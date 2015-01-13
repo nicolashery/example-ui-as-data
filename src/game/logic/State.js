@@ -13,7 +13,7 @@ State.initial = function() {
         cost: 120,
         attack: 7,
         hp: 50,
-        count: 0
+        count: 2
       },
       archer: {
         name: 'Archer',
@@ -22,7 +22,7 @@ State.initial = function() {
         attack: 5,
         hp: 40,
         bonus: {light: 4},
-        count: 0
+        count: 1
       },
       pikeman: {
         name: 'Pikeman',
