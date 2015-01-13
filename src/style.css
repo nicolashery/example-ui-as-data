@@ -13,6 +13,9 @@
   flex-shrink: 0;
 }
 
+/* Game                                        */
+/* =========================================== */
+
 .Game {
   font-family: Helvetica, sans-serif;
   font-size: 14px;
@@ -37,8 +40,11 @@
   font-size: 18px;
 }
 
-.Game .Game-boxContent,
 .Game .Game-boxTitle {
+  padding: 5px 10px;
+}
+
+.Game .Game-boxContent {
   padding: 10px;
 }
 
@@ -53,4 +59,41 @@
 .Game .Game-box--resources,
 .Game .Game-box--armySummary {
   margin-bottom: 15px;
+}
+
+/* Resources                                   */
+/* =========================================== */
+
+.Game .Resources {
+  flex-direction: row;
+}
+
+.Game .Resources-item {
+  flex-direction: row;
+  align-items: center;
+}
+
+.Game .Resources-item--gold {
+  margin-right: 20px;
+}
+
+.Game .Resources-icon {
+  width: 20px;
+  height: 20px;
+  background-size: 20px;
+  margin-right: 5px;
+}
+
+.Game .Resources-item--gold .Resources-icon {
+  background-image: url(./images/gold.png);
+}
+
+.Game .Resources-item--supply .Resources-icon {
+  background-image: url(./images/supply.png);
+}
+
+.Game .Resources-quantity {
+  font-weight: bold;
+  font-size: 16px;
+  width: 40px;
 }

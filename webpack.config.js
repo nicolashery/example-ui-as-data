@@ -9,7 +9,8 @@ var config = {
   module: {
     loaders: [
       {test: /\.jsx$/, loader: 'jsx'},
-      {test: /\.css$/, loader: 'style!css'}
+      {test: /\.css$/, loader: 'style!css'},
+      {test: /\.png$/, loader: 'url?limit=10000&mimetype=image/png'}
     ]
   }
 };
