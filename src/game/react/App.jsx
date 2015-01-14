@@ -23,7 +23,7 @@ var App = React.createClass({
       <div className="Game">
         <div className="Game-panel Game-panel--left">
           <div className="Game-box Game-box--unitList">
-            <div className="Game-boxTitle">Select units</div>
+            <div className="Game-boxTitle">Unit selection</div>
             <div className="Game-boxContent"><UnitList /></div>
           </div>
         </div>

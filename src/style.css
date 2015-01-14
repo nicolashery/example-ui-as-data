@@ -29,7 +29,7 @@
 
   font-size: 14px;
   line-height: 1;
-  padding: 4px 8px;
+  padding: 5px 8px;
 }
 
 .Game .Button:hover,
@@ -60,7 +60,7 @@
   font-size: 14px;
   line-height: 1;
 
-  width: 1000px;
+  width: 800px;
   flex-flow: row wrap;
   margin: auto;
   margin-bottom: 60px;
@@ -229,4 +229,46 @@
   width: 30px;
   height: 30px;
   margin-left: 5px;
+}
+
+/* Army summary                                */
+/* =========================================== */
+
+.Game .ArmySummary-unit {
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.Game .ArmySummary-icon,
+.Game .ArmySummary-name {
+  margin-right: 5px;
+}
+
+.Game .ArmySummary-count {
+  font-weight: bold;
+}
+
+.Game .ArmySummary-icon {
+  width: 20px;
+  height: 20px;
+  background-size: 18px;
+  background-repeat: no-repeat;
+  border: 1px solid #555;
+}
+
+.Game .ArmySummary-unit--footman .ArmySummary-icon {
+  background-image: url(./images/footman.png);
+}
+
+.Game .ArmySummary-unit--archer .ArmySummary-icon {
+  background-image: url(./images/archer.png);
+}
+
+.Game .ArmySummary-unit--pikeman .ArmySummary-icon {
+  background-image: url(./images/pikeman.png);
+}
+
+.Game .ArmySummary-unit--knight .ArmySummary-icon {
+  background-image: url(./images/knight.png);
 }

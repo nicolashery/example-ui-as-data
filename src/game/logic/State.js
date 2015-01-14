@@ -22,7 +22,7 @@ State.initial = function() {
         attack: 5,
         hp: 40,
         bonus: {light: 4},
-        count: 1
+        count: 2
       },
       pikeman: {
         name: 'Pikeman',
@@ -40,7 +40,7 @@ State.initial = function() {
         attack: 12,
         hp: 160,
         bonus: {ranged: 4},
-        count: 0
+        count: 3
       }
     }
   });

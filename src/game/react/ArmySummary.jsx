@@ -4,20 +4,21 @@ var app = require('../app');
 var ArmySummary = React.createClass({
   render: function() {
     return (
-      <div>
-        <p><strong>Summary:</strong></p>
-        <ul>
-          {app.projections.armySummary().map(this.renderUnit).toArray()}
-        </ul>
+      <div className="ArmySummary">
+        {app.projections.armySummary().map(this.renderUnit).toArray()}
       </div>
     );
   },
 
   renderUnit: function(unit) {
     return (
-      <li key={unit.get('id')}>
-        {unit.get('name') + ' (' + unit.get('count') + ')'}
-      </li>
+      <div
+        className={'ArmySummary-unit ArmySummary-unit--' + unit.get('id')}
+        key={unit.get('id')}>
+        <div className="ArmySummary-icon"></div>
+        <div className="ArmySummary-name">{unit.get('name')}</div>
+        <div className="ArmySummary-count">{'(' + unit.get('count') + ')'}</div>
+      </div>
     );
   }
 });
