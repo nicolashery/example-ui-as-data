@@ -139,3 +139,17 @@
 
 /* Unit list                                   */
 /* =========================================== */
+
+.Game .UnitList-controls {
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.Game .UnitList-sort {
+  flex-direction: row;
+  align-items: center;
+}
+
+.Game .UnitList-sortItem {
+  margin-right: 5px;
+}

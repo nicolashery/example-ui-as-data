@@ -17,9 +17,11 @@ var UnitList = React.createClass({
 
   render: function() {
     return (
-      <div>
-        {this.renderSort()}
-        {this.renderReset()}
+      <div className="UnitList">
+        <div className="UnitList-controls">
+          {this.renderSort()}
+          {this.renderReset()}
+        </div>
         {this.renderList()}
       </div>
     );
@@ -27,34 +29,35 @@ var UnitList = React.createClass({
 
   renderSort: function() {
     return (
-      <p>
-        <strong>Sort: </strong>
+      <div className="UnitList-sort">
+        <span className="UnitList-sortItem">Sort by</span>
         <button
           className={cx({
+            'UnitList-sortItem': true,
             'Button': true,
             'is-active': app.state().get('sort') === 'cost'
           })}
           onClick={app.actions.sort.bind(null, 'cost')}>
           Cost
         </button>
-        {' - '}
         <button
           className={cx({
+            'UnitList-sortItem': true,
             'Button': true,
             'is-active': app.state().get('sort') === 'name'
           })}
           onClick={app.actions.sort.bind(null, 'name')}>
           Name
         </button>
-      </p>
+      </div>
     );
   },
 
   renderReset: function() {
     return (
-      <p>
+      <div>
         <button className="Button" onClick={app.actions.reset}>Reset</button>
-      </p>
+      </div>
     );
   },
 
