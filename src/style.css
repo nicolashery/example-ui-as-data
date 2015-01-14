@@ -143,6 +143,7 @@
 .Game .UnitList-controls {
   flex-direction: row;
   justify-content: space-between;
+  margin-bottom: 30px;
 }
 
 .Game .UnitList-sort {
@@ -152,4 +153,80 @@
 
 .Game .UnitList-sortItem {
   margin-right: 5px;
+}
+
+.Game .UnitList-unit {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 30px;
+}
+
+.Game .UnitList-info {
+  flex-direction: row;
+}
+
+.Game .UnitList-icon {
+  width: 90px;
+  height: 90px;
+  background-size: 84px;
+  background-repeat: no-repeat;
+  border: 3px solid #555;
+  margin-right: 10px;
+}
+
+.Game .UnitList-unit--footman .UnitList-icon {
+  background-image: url(./images/footman.png);
+}
+
+.Game .UnitList-unit--archer .UnitList-icon {
+  background-image: url(./images/archer.png);
+}
+
+.Game .UnitList-unit--pikeman .UnitList-icon {
+  background-image: url(./images/pikeman.png);
+}
+
+.Game .UnitList-unit--knight .UnitList-icon {
+  background-image: url(./images/knight.png);
+}
+
+.Game .UnitList-name {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 3px;
+}
+
+.Game .UnitList-description {
+  color: #888;
+  font-style: italic;
+  margin-bottom: 8px;
+}
+
+.Game .UnitList-quantity {
+  flex-direction: row;
+  margin-bottom: 3px;
+}
+
+.Game .UnitList-quantity span {
+  margin-right: 5px;
+}
+
+.Game .UnitList-actions {
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.Game .UnitList-count {
+  font-size: 16px;
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.Game .UnitList-button {
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  margin-left: 5px;
 }

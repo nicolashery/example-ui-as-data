@@ -67,26 +67,44 @@ var UnitList = React.createClass({
 
   renderUnit: function(unit) {
     return (
-      <p key={unit.get('id')}>
-        <strong>{unit.get('name')}</strong>{' (' + unit.get('count') + ')'}
-        {' '}
-        <button
-          className="Button"
-          onClick={app.actions.select.bind(null, unit.get('id'))}
-          disabled={!unit.get('isSelectable')}
-          style={{opacity: unit.get('isSelectable') ? 1 : 0}}>+</button>
-        {' '}
-        <button
-          className="Button"
-          onClick={app.actions.remove.bind(null, unit.get('id'))}
-          disabled={!unit.get('isRemovable')}
-          style={{opacity: unit.get('isRemovable') ? 1 : 0}}>-</button>
-        <br/>
-        {unit.get('description')}<br/>
-        {'Cost: ' + unit.get('cost')}<br/>
-        {'Attack: ' + unit.get('attack')}<br/>
-        {'HP: ' + unit.get('hp')}<br/>
-      </p>
+      <div
+        className={'UnitList-unit UnitList-unit--' + unit.get('id')}
+        key={unit.get('id')}>
+        <div className="UnitList-info">
+          <div className="UnitList-icon"></div>
+          <div className="UnitList-properties">
+            <div className="UnitList-name">{unit.get('name')}</div>
+            <div className="UnitList-description">{unit.get('description')}</div>
+            <div className="UnitList-quantity">
+              {'Cost: '}<strong>{unit.get('cost')}</strong>
+            </div>
+            <div className="UnitList-quantity">
+              {'Attack: '}<strong>{unit.get('attack')}</strong>
+            </div>
+            <div className="UnitList-quantity">
+              {'HP: '}<strong>{unit.get('hp')}</strong>
+            </div>
+          </div>
+        </div>
+        <div className="UnitList-actions">
+          <span
+            className="UnitList-count"
+            style={{opacity: unit.get('count') ? 1 : 0}}>
+            {' (' + unit.get('count') + ')'}
+          </span>
+          <button
+            className="Button UnitList-button"
+            onClick={app.actions.select.bind(null, unit.get('id'))}
+            disabled={!unit.get('isSelectable')}
+            style={{opacity: unit.get('isSelectable') ? 1 : 0}}>+</button>
+            {' '}
+          <button
+            className="Button UnitList-button"
+            onClick={app.actions.remove.bind(null, unit.get('id'))}
+            disabled={!unit.get('isRemovable')}
+            style={{opacity: unit.get('isRemovable') ? 1 : 0}}>-</button>
+        </div>
+      </div>
     );
   }
 });
