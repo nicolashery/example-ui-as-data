@@ -1,4 +1,5 @@
 var React = require('react');
+var cx = require('react/lib/cx');
 var app = require('../app');
 
 var UnitList = React.createClass({
@@ -28,32 +29,33 @@ var UnitList = React.createClass({
     return (
       <p>
         <strong>Sort: </strong>
-        <a
-          className={app.state().get('sort') === 'cost' ? 'isActive' : null}
-          href=""
-          onClick={this.handleSort.bind(null, 'cost')}>
+        <button
+          className={cx({
+            'Button': true,
+            'is-active': app.state().get('sort') === 'cost'
+          })}
+          onClick={app.actions.sort.bind(null, 'cost')}>
           Cost
-        </a>
+        </button>
         {' - '}
-        <a
-          className={app.state().get('sort') === 'name' ? 'isActive' : null}
-          href=""
-          onClick={this.handleSort.bind(null, 'name')}>
+        <button
+          className={cx({
+            'Button': true,
+            'is-active': app.state().get('sort') === 'name'
+          })}
+          onClick={app.actions.sort.bind(null, 'name')}>
           Name
-        </a>
+        </button>
       </p>
     );
   },
 
-  handleSort: function(sort, e) {
-    if (e) {
-      e.preventDefault();
-    }
-    app.actions.sort(sort);
-  },
-
   renderReset: function() {
-    return <p><button onClick={app.actions.reset}>Reset</button></p>;
+    return (
+      <p>
+        <button className="Button" onClick={app.actions.reset}>Reset</button>
+      </p>
+    );
   },
 
   renderList: function() {
@@ -66,11 +68,13 @@ var UnitList = React.createClass({
         <strong>{unit.get('name')}</strong>{' (' + unit.get('count') + ')'}
         {' '}
         <button
+          className="Button"
           onClick={app.actions.select.bind(null, unit.get('id'))}
           disabled={!unit.get('isSelectable')}
           style={{opacity: unit.get('isSelectable') ? 1 : 0}}>+</button>
         {' '}
         <button
+          className="Button"
           onClick={app.actions.remove.bind(null, unit.get('id'))}
           disabled={!unit.get('isRemovable')}
           style={{opacity: unit.get('isRemovable') ? 1 : 0}}>-</button>

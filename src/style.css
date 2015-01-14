@@ -1,3 +1,6 @@
+/* Core                                        */
+/* =========================================== */
+
 .Game,
 .Game div,
 .Game span {
@@ -11,6 +14,42 @@
   flex-direction: column;
   align-items: stretch;
   flex-shrink: 0;
+}
+
+.Game .Button {
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  background-color: #fff;
+  border: 3px solid #00720C;
+  color: #015A0A;
+  white-space: nowrap;
+
+  font-size: 14px;
+  line-height: 1;
+  padding: 4px 8px;
+}
+
+.Game .Button:hover,
+.Game .Button:focus {
+  outline: 0;
+  text-decoration: none;
+}
+
+.Game .Button:hover {
+  background-color: #C1E9C5;
+}
+
+.Game .Button:active {
+  outline: 0;
+  background-image: none;
+}
+
+.Game .Button.is-active {
+  color: #fff;
+  background-color: #00720C;
 }
 
 /* Game                                        */
@@ -97,3 +136,6 @@
   font-size: 16px;
   width: 40px;
 }
+
+/* Unit list                                   */
+/* =========================================== */
