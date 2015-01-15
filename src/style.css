@@ -75,6 +75,27 @@ a.isActive {
   background-color: #777;
 }
 
+/* Footer                                      */
+/* =========================================== */
+
+.Footer {
+  font-family: Helvetica, sans-serif;
+  font-size: 12px;
+  line-height: 1;
+  text-align: center;
+  color: #888;
+  margin-bottom: 30px;
+}
+
+.Footer a {
+  color: #888;
+  text-decoration: underline;
+}
+
+.Footer a:hover {
+  color: #333;
+}
+
 /* Game                                        */
 /* =========================================== */
 

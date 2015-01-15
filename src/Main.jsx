@@ -27,6 +27,7 @@ var Main = React.createClass({
       <div>
         {this.renderNavbar()}
         {this.renderApp()}
+        {this.renderFooter()}
       </div>
     );
   },
@@ -124,6 +125,21 @@ var Main = React.createClass({
     }
 
     return <AppComponent />;
+  },
+
+  renderFooter: function() {
+    if (this.state.app !== 'game' || this.state.engine === 'html') {
+      return null;
+    }
+
+    return (
+      <div className="Footer">
+        {'Game art by '}
+        <a href="http://7soul1.deviantart.com/" target="_blank">
+          {'Henrique Lazarini'}
+        </a>
+      </div>
+    );
   }
 });
 
