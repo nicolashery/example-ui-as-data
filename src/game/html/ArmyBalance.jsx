@@ -3,16 +3,21 @@ var app = require('../app');
 
 var ArmyBalance = React.createClass({
   render: function() {
-    var balance = app.projections.armyBalance();
     return (
       <div>
         <p><strong>Balance:</strong></p>
         <ul>
-          <li>{'vs light (' + balance.get('light') + ')'}</li>
-          <li>{'vs ranged (' + balance.get('ranged') + ')'}</li>
-          <li>{'vs cavalry (' + balance.get('cavalry') + ')'}</li>
+          {app.projections.armyBalance().map(this.renderItem).toArray()}
         </ul>
       </div>
+    );
+  },
+
+  renderItem: function(item) {
+    return (
+      <li key={item.get('id')}>
+        {'vs ' + item.get('id') + ' (' + item.get('value') + ')'}
+      </li>
     );
   }
 });

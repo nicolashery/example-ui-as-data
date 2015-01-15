@@ -17,7 +17,7 @@ var Main = React.createClass({
   getInitialState: function() {
     return {
       app: 'game',
-      engine: 'd3'
+      engine: 'react'
     };
   },
 

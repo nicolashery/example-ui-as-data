@@ -3,13 +3,19 @@ var app = require('../app');
 
 var Resources = React.createClass({
   render: function() {
-    var resources = app.projections.resourcesRemaining();
     return (
       <p>
-        <strong>{resources.get('gold')}</strong>{' Gold'}
-        {' '}
-        <strong>{resources.get('supply')}</strong>{' Supply'}
+        {app.projections.resourcesRemaining().map(this.renderItem).toArray()}
       </p>
+    );
+  },
+
+  renderItem: function(item) {
+    return (
+      <span key={item.get('id')}>
+        <strong>{item.get('quantity')}</strong>
+        {' ' + item.get('name') + ' '}
+      </span>
     );
   }
 });
