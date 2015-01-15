@@ -2,6 +2,7 @@ var d3 = require('d3');
 var app = require('../app');
 var renderResources = require('./resources');
 var renderArmySummary = require('./armySummary');
+var renderArmyBalance = require('./armyBalance');
 var renderUnitList = require('./unitList');
 
 var el;
@@ -24,6 +25,7 @@ function render() {
   renderGame(selection);
   renderResources(selection.select('.js-Resources'));
   renderArmySummary(selection.select('.js-ArmySummary'));
+  renderArmyBalance(selection.select('.js-ArmyBalance'));
   renderUnitList(selection.select('.js-UnitList'));
 }
 

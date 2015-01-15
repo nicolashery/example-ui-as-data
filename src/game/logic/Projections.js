@@ -100,11 +100,20 @@ Projections._unitListSummary = function(units) {
 
 Projections.armyBalance = function(state) {
   var base = this._totalAttack(state);
-  return Immutable.Map({
-    light: this._attackBalance(base, this._totalAttack(state, 'light')),
-    ranged: this._attackBalance(base, this._totalAttack(state, 'ranged')),
-    cavalry: this._attackBalance(base, this._totalAttack(state, 'cavalry'))
-  });
+  return Immutable.fromJS([
+    {
+      id: 'light',
+      value: this._attackBalance(base, this._totalAttack(state, 'light'))
+    },
+    {
+      id: 'ranged',
+      value: this._attackBalance(base, this._totalAttack(state, 'ranged'))
+    },
+    {
+      id: 'cavalry',
+      value: this._attackBalance(base, this._totalAttack(state, 'cavalry'))
+    }
+  ]);
 };
 
 Projections._totalAttack = function(state, type) {

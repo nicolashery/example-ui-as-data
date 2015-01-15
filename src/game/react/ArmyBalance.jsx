@@ -7,30 +7,26 @@ var RECT_MARGIN = 5;
 var ArmyBalance = React.createClass({
   render: function() {
     var balance = app.projections.armyBalance();
-    var self = this;
     return (
       <svg width="200" height={(RECT_HEIGHT + RECT_MARGIN)*balance.count()}>
-        {balance.mapEntries(function(entry, index) {
-          return [index, self.renderItem(entry[0], entry[1], index)];
-        }).toList().toArray()}
+        {balance.map(this.renderItem).toArray()}
       </svg>
     );
   },
 
-  renderItem: function(key, value, index) {
+  renderItem: function(item, index) {
     return (
-      <g key={key}>
+      <g key={item.get('id')}>
         <text
           className="ArmyBalance-text"
           x="0"
           y={this.yScale(index)}
           dy="15">
-          {'vs ' + key}
+          {'vs ' + item.get('id')}
         </text>
         <rect
-          key={key}
           className="ArmyBalance-rect"
-          width={this.xScale(value)}
+          width={this.xScale(item.get('value'))}
           height={RECT_HEIGHT}
           x="70"
           y={this.yScale(index)}>
