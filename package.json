@@ -2,6 +2,7 @@
   "name": "example-ui-as-data",
   "version": "0.1.0",
   "dependencies": {
+    "d3": "3.5.3",
     "immutable": "3.3.0",
     "object-assign": "2.0.0",
     "react": "0.12.2"

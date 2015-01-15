@@ -3,17 +3,20 @@ var app = require('../app');
 
 var Resources = React.createClass({
   render: function() {
-    var resources = app.projections.resourcesRemaining();
     return (
       <div className="Resources">
-        <div className="Resources-item Resources-item--gold">
-          <div className="Resources-icon" title="Gold"></div>
-          <div className="Resources-quantity">{resources.get('gold')}</div>
-        </div>
-        <div className="Resources-item Resources-item--supply">
-          <div className="Resources-icon" title="Supply"></div>
-          <div className="Resources-quantity">{resources.get('supply')}</div>
-        </div>
+        {app.projections.resourcesRemaining().map(this.renderItem).toArray()}
+      </div>
+    );
+  },
+
+  renderItem: function(item) {
+    return (
+      <div
+        key={item.get('id')}
+        className={'Resources-item Resources-item--' + item.get('id')}>
+        <div className="Resources-icon" title={item.get('name')}></div>
+        <div className="Resources-quantity">{item.get('quantity')}</div>
       </div>
     );
   }

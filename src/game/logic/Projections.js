@@ -4,10 +4,18 @@ var pipeline = require('../../lib/pipeline');
 var Projections = {};
 
 Projections.resourcesRemaining = function(state) {
-  return Immutable.Map({
-    gold: state.getIn(['resources', 'gold']) - this._goldSpent(state),
-    supply: state.getIn(['resources', 'supply']) - this._supplySpent(state)
-  });
+  return Immutable.fromJS([
+    {
+      id: 'gold',
+      name: 'Gold',
+      quantity: state.getIn(['resources', 'gold']) - this._goldSpent(state)
+    },
+    {
+      id: 'supply',
+      name: 'Supply',
+      quantity: state.getIn(['resources', 'supply']) - this._supplySpent(state)
+    }
+  ]);
 };
 
 Projections._goldSpent = function(state) {

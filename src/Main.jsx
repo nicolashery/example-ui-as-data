@@ -3,7 +3,7 @@ var React = require('react');
 var apps = {
   game: {
     react: require('./game/react/App.jsx'),
-    d3: null,
+    d3: require('./game/d3/App.jsx'),
     html: require('./game/html/App.jsx')
   },
   todo: {
@@ -17,7 +17,7 @@ var Main = React.createClass({
   getInitialState: function() {
     return {
       app: 'game',
-      engine: 'react'
+      engine: 'd3'
     };
   },
 

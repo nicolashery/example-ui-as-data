@@ -1,4 +1,4 @@
-var d3 = window.d3;
+var d3 = require('d3');
 var app = require('../app');
 
 var ESCAPE_KEY = 27;
