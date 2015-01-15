@@ -131,6 +131,9 @@ Projections._totalAttack = function(state, type) {
 };
 
 Projections._attackBalance = function(base, attack) {
+  if (base === 0) {
+    return 1;
+  }
   return Math.round(attack/base*100)/100;
 };
 
