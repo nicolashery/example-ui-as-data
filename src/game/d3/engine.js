@@ -1,6 +1,7 @@
 var d3 = require('d3');
 var app = require('../app');
 var renderResources = require('./resources');
+var renderUnitList = require('./unitList');
 
 var el;
 
@@ -18,13 +19,14 @@ function render() {
     throw new Error('Can\'t render without an element');
   }
 
-  renderGame();
-
-  renderResources(el);
+  var selection = d3.select(el);
+  renderGame(selection);
+  renderResources(selection.select('.js-Resources'));
+  renderUnitList(selection.select('.js-UnitList'));
 }
 
-function renderGame() {
-  var container = d3.select(el).selectAll('.js-Game')
+function renderGame(selection) {
+  var container = selection.selectAll('.js-Game')
     .data([0]);
 
   container.enter().append('div').attr('class', 'Game js-Game').html(
