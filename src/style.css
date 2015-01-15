@@ -272,3 +272,10 @@
 .Game .ArmySummary-unit--knight .ArmySummary-icon {
   background-image: url(./images/knight.png);
 }
+
+/* Army balance                                */
+/* =========================================== */
+
+.Game .ArmyBalance-rect {
+  fill: #F38D41;
+}
