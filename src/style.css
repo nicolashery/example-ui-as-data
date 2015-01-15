@@ -115,6 +115,7 @@ a.isActive {
 }
 
 .Game .Game-panel--left {
+  flex: 0 0 525px;
   margin-right: 30px;
 }
 
