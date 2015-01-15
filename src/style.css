@@ -1,9 +1,22 @@
 /* Core                                        */
 /* =========================================== */
 
+body {
+  margin: 10px;
+}
+
+a.isActive {
+  color: black;
+  cursor: default;
+  text-decoration: none;
+}
+
 .Game,
 .Game div,
-.Game span {
+.Game span,
+.Navbar,
+.Navbar div,
+.Navbar span {
   box-sizing: border-box;
   position: relative;
   border: 0 solid black;
@@ -16,40 +29,50 @@
   flex-shrink: 0;
 }
 
-.Game .Button {
-  display: inline-block;
-  text-align: center;
-  vertical-align: middle;
-  cursor: pointer;
-  background-image: none;
-  background-color: #fff;
-  border: 3px solid #00720C;
-  color: #015A0A;
-  white-space: nowrap;
+/* Navbar                                      */
+/* =========================================== */
 
+.Navbar {
+  flex-flow: row wrap;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  font-family: Helvetica, sans-serif;
   font-size: 14px;
   line-height: 1;
-  padding: 5px 8px;
 }
 
-.Game .Button:hover,
-.Game .Button:focus {
-  outline: 0;
+.Navbar .Navbar-left,
+.Navbar .Navbar-right,
+.Navbar .Navbar-group {
+  flex-flow: row wrap;
+}
+
+.Navbar .Navbar-group {
+  margin-right: 10px;
+}
+
+.Navbar .Navbar-label,
+.Navbar .Navbar-link {
+  line-height: 30px;
+  padding: 0 5px;
+}
+
+.Navbar .Navbar-label {
+  font-weight: bold;
+}
+
+.Navbar-link {
+  color: #888;
   text-decoration: none;
 }
 
-.Game .Button:hover {
-  background-color: #C1E9C5;
+.Navbar-link:hover {
+  color: #333;
 }
 
-.Game .Button:active {
-  outline: 0;
-  background-image: none;
-}
-
-.Game .Button.is-active {
+.Navbar-link.is-active {
   color: #fff;
-  background-color: #00720C;
+  background-color: #777;
 }
 
 /* Game                                        */
@@ -98,6 +121,45 @@
 .Game .Game-box--resources,
 .Game .Game-box--armySummary {
   margin-bottom: 15px;
+}
+
+/* Buttons                                     */
+/* =========================================== */
+
+.Game .Button {
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  background-color: #fff;
+  border: 3px solid #00720C;
+  color: #015A0A;
+  white-space: nowrap;
+
+  font-size: 14px;
+  line-height: 1;
+  padding: 5px 8px;
+}
+
+.Game .Button:hover,
+.Game .Button:focus {
+  outline: 0;
+  text-decoration: none;
+}
+
+.Game .Button:hover {
+  background-color: #C1E9C5;
+}
+
+.Game .Button:active {
+  outline: 0;
+  background-image: none;
+}
+
+.Game .Button.is-active {
+  color: #fff;
+  background-color: #00720C;
 }
 
 /* Resources                                   */

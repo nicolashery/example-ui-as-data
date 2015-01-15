@@ -1,4 +1,5 @@
 var React = require('react');
+var cx = require('react/lib/cx');
 
 var apps = {
   game: {
@@ -24,54 +25,76 @@ var Main = React.createClass({
   render: function() {
     return (
       <div>
-        {this.renderMenu()}
+        {this.renderNavbar()}
         {this.renderApp()}
       </div>
     );
   },
 
-  renderMenu: function() {
+  renderNavbar: function() {
     return (
-      <div>
-        <p>
-          <strong>App: </strong>
+      <div className="Navbar">
+        <div className="Navbar-left">
+          <div className="Navbar-group">
+            <div className="Navbar-label">App:</div>
+            <a
+              className={cx({
+                'Navbar-link': true,
+                'is-active': this.state.app === 'game'
+              })}
+              href=""
+              onClick={this.handleSwitchApp.bind(null, 'game')}>
+              Game
+            </a>
+            <a
+              className={cx({
+                'Navbar-link': true,
+                'is-active': this.state.app === 'todo'
+              })}
+              href=""
+              onClick={this.handleSwitchApp.bind(null, 'todo')}>
+              Todo
+            </a>
+          </div>
+          <div className="Navbar-group">
+            <div className="Navbar-label">Rendering engine:</div>
+            <a
+              className={cx({
+                'Navbar-link': true,
+                'is-active': this.state.engine === 'react'
+              })}
+              href=""
+              onClick={this.handleSwitchEngine.bind(null, 'react')}>
+              React
+            </a>
+            <a
+              className={cx({
+                'Navbar-link': true,
+                'is-active': this.state.engine === 'd3'
+              })}
+              href=""
+              onClick={this.handleSwitchEngine.bind(null, 'd3')}>
+              D3.js
+            </a>
+            <a
+              className={cx({
+                'Navbar-link': true,
+                'is-active': this.state.engine === 'html'
+              })}
+              href=""
+              onClick={this.handleSwitchEngine.bind(null, 'html')}>
+              React (HTML)
+            </a>
+          </div>
+        </div>
+        <div className="Navbar-right">
           <a
-            className={this.state.app === 'game' ? 'isActive' : null}
-            href=""
-            onClick={this.handleSwitchApp.bind(null, 'game')}>
-            Game
+            className="Navbar-link"
+            href="https://github.com/nicolashery/example-ui-as-data"
+            target="_blank">
+            View on Github
           </a>
-          {' - '}
-          <a
-            className={this.state.app === 'todo' ? 'isActive' : null}
-            href=""
-            onClick={this.handleSwitchApp.bind(null, 'todo')}>
-            Todo
-          </a>
-        </p>
-        <p>
-          <strong>Rendering engine: </strong>
-          <a
-            className={this.state.engine === 'react' ? 'isActive' : null}
-            href=""
-            onClick={this.handleSwitchEngine.bind(null, 'react')}>
-            React
-          </a>
-          {' - '}
-          <a
-            className={this.state.engine === 'd3' ? 'isActive' : null}
-            href=""
-            onClick={this.handleSwitchEngine.bind(null, 'd3')}>
-            D3.js
-          </a>
-          {' - '}
-          <a
-            className={this.state.engine === 'html' ? 'isActive' : null}
-            href=""
-            onClick={this.handleSwitchEngine.bind(null, 'html')}>
-            React (HTML)
-          </a>
-        </p>
+        </div>
       </div>
     );
   },
