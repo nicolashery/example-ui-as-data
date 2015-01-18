@@ -19,5 +19,6 @@
     "beforeEach": false,
     "after": false,
     "afterEach": false
-  }
+  },
+  "expr": true
 }
