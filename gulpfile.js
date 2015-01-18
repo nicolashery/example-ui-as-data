@@ -5,6 +5,7 @@ var jshint = require('gulp-jshint');
 var jsFiles = [
   'src/**/*.js',
   'src/**/*.jsx',
+  'test/**/*.js',
   '*.js'
 ];
 

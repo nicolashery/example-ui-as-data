@@ -1,0 +1,23 @@
+{
+  "esnext": true,
+  "browser": true,
+  "node": true,
+  "bitwise": true,
+  "eqeqeq": true,
+  "immed": true,
+  "indent": 2,
+  "latedef": "nofunc",
+  "noarg": true,
+  "undef": true,
+  "unused": "vars",
+  "trailing": true,
+  "globals": {
+    "describe": false,
+    "it": false,
+    "expect": false,
+    "before": false,
+    "beforeEach": false,
+    "after": false,
+    "afterEach": false
+  }
+}
