@@ -1,6 +1,6 @@
-# Thinking of user-interfaces as data
+# Describing UI state with data
 
-Code for the blog post [Thinking of user-interfaces as data](http://nicolashery.com/thinking-of-user-interfaces-as-data).
+Code for the blog post [Describing UI state with data](http://nicolashery.com/describing-ui-state-with-data).
 
 Demo: http://nicolashery.github.io/example-ui-as-data
 
